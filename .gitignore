@@ -87,3 +87,6 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+# configuration file that may or may not contain secrets
+config.py
