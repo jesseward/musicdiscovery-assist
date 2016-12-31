@@ -1,0 +1,32 @@
+{
+  "id": "94717788-e1a9-4949-88f3-de0a0e160996",
+  "name": "artist",
+  "isOverridable": true,
+  "entries": [
+    {
+      "value": "artist",
+      "synonyms": [
+        "artist",
+        "band",
+        "performer",
+        "singer",
+        "composer",
+        "song writer",
+        "group",
+        "singers",
+        "bands",
+        "song writers",
+        "performers",
+        "artists"
+      ]
+    },
+    {
+      "value": "\"Metro Area\"",
+      "synonyms": [
+        "\"Metro Area\""
+      ]
+    }
+  ],
+  "isEnum": false,
+  "automatedExpansion": false
+}

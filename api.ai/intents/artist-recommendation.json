@@ -1,0 +1,45 @@
+{
+  "userSays": [
+    {
+      "id": "6a7c1de1-55ef-45bb-bd5b-9d43836d0b1f",
+      "data": [
+        {
+          "text": "What artists are similar to @sys.any:artist"
+        }
+      ],
+      "isTemplate": true,
+      "count": 0
+    }
+  ],
+  "id": "ac7d33f4-256f-44ab-a520-e76ec944eb8f",
+  "name": "artist-recommendation",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "artist_similar",
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "required": true,
+          "dataType": "@sys.any",
+          "name": "artist",
+          "value": "$artist",
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "speech": []
+        }
+      ]
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": []
+}

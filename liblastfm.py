@@ -38,7 +38,9 @@ class LastFM(object):
         return re.sub(clean_re, '', raw)
 
     def _fetch(self, uri='http://ws.audioscrobbler.com/2.0/', params={}):
-        """:param uri: AS/LastFM API endpoint.
+        """Issues a requests.get call to last.fm ws URI
+ 
+        :param uri: AS/LastFM API endpoint.
         :param params: Dictionary containing key->value pairs for the webservice call.
         :return: Returns a requests dict from the converted JSON response object."""
 
@@ -53,7 +55,9 @@ class LastFM(object):
         return res
 
     def get_similar_tracks(self, artist, track_name, method='track.getSimilar', limit=10):
-        """:param artist: Artist name (string) of the track we're in search of
+        """Retrieves similar tracks to an artist and trackname
+ 
+        :param artist: Artist name (string) of the track we're in search of
         :param track_name: Song name (string) in which to search
         :param method: The LastFM webservice method we're calling ('artist.getinfo')
         :return: A dictionary"""
@@ -68,7 +72,9 @@ class LastFM(object):
         return results
 
     def get_artist_info(self, artist, method='artist.getinfo'):
-        """:param artist: Artist name (string) in which we wish to retrieve artist information.
+        """Retrieves artist/band biography summary text.
+ 
+        :param artist: Artist name (string) in which we wish to retrieve artist information.
         :param method: The LastFM webservice method we're calling ('artist.getinfo')
         :return: A dictionary."""
 

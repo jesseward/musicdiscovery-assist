@@ -1,0 +1,17 @@
+{
+  "id": "8426410a-857e-48e6-9da4-07fdca0af9c9",
+  "name": "album",
+  "isOverridable": true,
+  "entries": [
+    {
+      "value": "track",
+      "synonyms": [
+        "track",
+        "song",
+        "single"
+      ]
+    }
+  ],
+  "isEnum": false,
+  "automatedExpansion": false
+}

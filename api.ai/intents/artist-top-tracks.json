@@ -1,0 +1,64 @@
+{
+  "userSays": [
+    {
+      "id": "ff3595a4-3eba-4645-893a-91d62e972a12",
+      "data": [
+        {
+          "text": "What are popular songs for @sys.any:artist"
+        }
+      ],
+      "isTemplate": true,
+      "count": 0
+    },
+    {
+      "id": "7fabbbd6-dec1-4c8f-9f2f-e8f05433eb87",
+      "data": [
+        {
+          "text": "What are the best songs for @sys.any:artist"
+        }
+      ],
+      "isTemplate": true,
+      "count": 0
+    },
+    {
+      "id": "73bc3d88-2370-456f-a1d1-67332b0ed5f2",
+      "data": [
+        {
+          "text": "What are the top songs for artist @sys.any:artist"
+        }
+      ],
+      "isTemplate": true,
+      "count": 0
+    }
+  ],
+  "id": "1c179bbf-e25b-4153-9cac-98313e4b2b76",
+  "name": "artist-top-tracks",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "artist_top_tracks",
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "required": true,
+          "dataType": "@sys.any",
+          "name": "artist",
+          "value": "$artist"
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "speech": []
+        }
+      ]
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": []
+}

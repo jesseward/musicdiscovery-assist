@@ -1,0 +1,50 @@
+{
+  "userSays": [
+    {
+      "id": "ab2ba589-b4d6-43bb-b1be-61e94eb92015",
+      "data": [
+        {
+          "text": "What songs are similar to @sys.any:track by @sys.any:artist"
+        }
+      ],
+      "isTemplate": true,
+      "count": 0
+    }
+  ],
+  "id": "bead9eb6-ca90-499c-af3c-2b00dfea0dc3",
+  "name": "song-recomendations",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "track_similar",
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "required": true,
+          "dataType": "@sys.any",
+          "name": "track",
+          "value": "$track"
+        },
+        {
+          "required": true,
+          "dataType": "@sys.any",
+          "name": "artist",
+          "value": "$artist"
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "speech": []
+        }
+      ]
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": []
+}

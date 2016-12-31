@@ -1,0 +1,44 @@
+{
+  "userSays": [
+    {
+      "id": "ce76205c-6e64-4b6b-90f7-913d160a915a",
+      "data": [
+        {
+          "text": "Tell me about @sys.any:artist"
+        }
+      ],
+      "isTemplate": true,
+      "count": 0
+    }
+  ],
+  "id": "188b3a4e-d9a6-4310-8609-4c282b2249b4",
+  "name": "artist-bio",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "artist_bio",
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "dataType": "@sys.any",
+          "name": "artist",
+          "value": "$artist",
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "speech": []
+        }
+      ]
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": []
+}
