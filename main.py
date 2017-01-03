@@ -121,8 +121,9 @@ def apiai_hook():
     response = {}
     try:
         response = route[req.get('result').get('action')](req)
-    except KeyError:
-        logging.error('Invalid action specified.')
+    except (KeyError, AttributeError) as e:
+        logging.error('Invalid action specified, error="{0}".'.format(e))
+        return jsonify(response)
 
     return response
 

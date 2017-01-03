@@ -1,0 +1,26 @@
+{
+  "id": "9874058a-7a1c-484c-a79c-b8688f4d9f98",
+  "timestamp": "2017-01-03T03:12:36.29Z",
+  "result": {
+    "source": "agent",
+    "resolvedQuery": "What are the top songs by artist Nightmares On Wax",
+    "action": "artist_top_tracks",
+    "actionIncomplete": false,
+    "parameters": {
+      "artist": "Nightmares On Wax"
+    },
+    "contexts": [],
+    "metadata": {
+      "intentId": "1c179bbf-e25b-4153-9cac-98313e4b2b76",
+      "webhookUsed": "true",
+      "webhookForSlotFillingUsed": "false",
+      "intentName": "artist-top-tracks"
+    },
+    "score": 1
+  },
+  "status": {
+    "code": 200,
+    "errorType": "success"
+  },
+  "sessionId": "252ade79-fa00-41c3-8df2-1b3cf5f714f7"
+}

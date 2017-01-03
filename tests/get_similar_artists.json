@@ -1,0 +1,26 @@
+{
+  "id": "e612fc41-e50c-43f7-8caf-52a683164934",
+  "timestamp": "2017-01-03T03:09:48.656Z",
+  "result": {
+    "source": "agent",
+    "resolvedQuery": "What artists are similar to Octave One",
+    "action": "artist_similar",
+    "actionIncomplete": false,
+    "parameters": {
+      "artist": "Octave One"
+    },
+    "contexts": [],
+    "metadata": {
+      "intentId": "ac7d33f4-256f-44ab-a520-e76ec944eb8f",
+      "webhookUsed": "true",
+      "webhookForSlotFillingUsed": "false",
+      "intentName": "artist-recommendation"
+    },
+    "score": 1
+  },
+  "status": {
+    "code": 200,
+    "errorType": "success"
+  },
+  "sessionId": "252ade79-fa00-41c3-8df2-1b3cf5f714f7"
+}

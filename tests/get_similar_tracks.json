@@ -1,0 +1,27 @@
+{
+  "id": "895c5a41-1d50-48ac-9c9a-7e64bffef0dd",
+  "timestamp": "2017-01-03T03:14:42.892Z",
+  "result": {
+    "source": "agent",
+    "resolvedQuery": "What songs are similar to Eye Know by De La Soul",
+    "action": "track_similar",
+    "actionIncomplete": false,
+    "parameters": {
+      "artist": "De La Soul",
+      "track": "Eye Know"
+    },
+    "contexts": [],
+    "metadata": {
+      "intentId": "bead9eb6-ca90-499c-af3c-2b00dfea0dc3",
+      "webhookUsed": "true",
+      "webhookForSlotFillingUsed": "false",
+      "intentName": "song-recomendations"
+    },
+    "score": 1
+  },
+  "status": {
+    "code": 200,
+    "errorType": "success"
+  },
+  "sessionId": "252ade79-fa00-41c3-8df2-1b3cf5f714f7"
+}

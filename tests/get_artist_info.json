@@ -1,0 +1,26 @@
+{
+  "id": "8b7a98e9-f5f5-4340-9cf1-973e157cba33",
+  "timestamp": "2017-01-03T02:54:48.61Z",
+  "result": {
+    "source": "agent",
+    "resolvedQuery": "tell me about Metro Area",
+    "action": "artist_bio",
+    "actionIncomplete": false,
+    "parameters": {
+      "artist": "Metro Area"
+    },
+    "contexts": [],
+    "metadata": {
+      "intentId": "188b3a4e-d9a6-4310-8609-4c282b2249b4",
+      "webhookUsed": "true",
+      "webhookForSlotFillingUsed": "false",
+      "intentName": "artist-bio"
+    },
+    "score": 1
+  },
+  "status": {
+    "code": 200,
+    "errorType": "success"
+  },
+  "sessionId": "252ade79-fa00-41c3-8df2-1b3cf5f714f7"
+}
