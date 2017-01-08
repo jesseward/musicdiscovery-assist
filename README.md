@@ -11,9 +11,9 @@ In a nutshell this service consists of the following
 
 # Example Google Home invocations 
 
-OK Google, let me talk to music recommendations
-OK Google, ask music discovery about artist Nightmares on Wax
-OK Google, ask music discovery what artists are similar to Underground Resistance
-OK Google, ask music discovery what are the popular songs by Boards of Canada
-OK Google, ask music discovery what songs are similar to Caught Up by Metro Area
-OK Google, ask music discovery what can i do
+* OK Google, let me talk to music recommendations
+* OK Google, ask music discovery about artist Nightmares on Wax
+* OK Google, ask music discovery what artists are similar to Underground Resistance
+* OK Google, ask music discovery what are the popular songs by Boards of Canada
+* OK Google, ask music discovery what songs are similar to Caught Up by Metro Area
+* OK Google, ask music discovery what can i do
