@@ -1,3 +1,4 @@
 flask>=0.12
 requests>=2.12.4
-requests-toolbelt>=0.7.0
+gunicorn>=19.6.0
+redis>=2.10.5

@@ -1,12 +1,6 @@
 import re
 import requests
 
-from requests_toolbelt.adapters import appengine
-from google.appengine.api import urlfetch
-
-appengine.monkeypatch()
-urlfetch.set_default_fetch_deadline(5)
-
 # cleans HTML entities that may be present in the artist
 # bio/summary field.
 clean_re = re.compile('<.*?>')
@@ -39,7 +33,7 @@ class LastFM(object):
 
     def _fetch(self, uri='http://ws.audioscrobbler.com/2.0/', params={}):
         """Issues a requests.get call to last.fm ws URI
- 
+
         :param uri: AS/LastFM API endpoint.
         :param params: Dictionary containing key->value pairs for the webservice call.
         :return: Returns a requests dict from the converted JSON response object."""
@@ -56,7 +50,7 @@ class LastFM(object):
 
     def get_similar_tracks(self, artist, track_name, method='track.getSimilar', limit=10):
         """Retrieves similar tracks to an artist and trackname
- 
+
         :param artist: Artist name (string) of the track we're in search of
         :param track_name: Song name (string) in which to search
         :param method: The LastFM webservice method we're calling ('artist.getinfo')
@@ -73,7 +67,7 @@ class LastFM(object):
 
     def get_artist_info(self, artist, method='artist.getinfo'):
         """Retrieves artist/band biography summary text.
- 
+
         :param artist: Artist name (string) in which we wish to retrieve artist information.
         :param method: The LastFM webservice method we're calling ('artist.getinfo')
         :return: A dictionary."""

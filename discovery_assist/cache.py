@@ -1,21 +1,25 @@
 import json
 import logging
 
-from google.appengine.api import memcache
+from redis import Redis
 
 from config import cfg
 from liblastfm import LastFM
 
-lastfm = LastFM(api_key=cfg['API_KEY'])
+
+_redis = Redis(host=cfg['REDIS_HOST'], port=cfg['REDIS_PORT'])
 
 
-class MemCache(object):
-    """Wrapper around appengine memcache  to be used to cache results
+class RedisCache(object):
+    """Wrapper around Redis to be used to cache results
     from the last.fm API. All Key Values are (de)serialized to JSON during the
     set/get calls."""
 
+    def __init__(self, handle=None):
+        self.handle = handle
+
     def add(self, key, value, timeout=2592000):
-        """Persists the key->value pair to Memcache. The value can be any type
+        """Persists the key->value pair to Redis. The value can be any type
         that can be serialized to a json string.
 
         Default key expiry set to 30 days.
@@ -24,16 +28,16 @@ class MemCache(object):
         :param value: A Python type that supports JSON serialization."""
 
         logging.debug(u'Writing key=' + key)
-        if not memcache.add(key, json.dumps(value), timeout):
+        if not self.handle.setex(key, json.dumps(value), timeout):
             logging.error(u'Unable to write ' + key)
 
     def get(self, key):
-        """Retrieves a JSON serialized object from Memcache. Also
+        """Retrieves a JSON serialized object from Redis. Also
         de-serializes to the Python object. Our use case will be a str, list
         or dict."""
 
         logging.debug(u'Looking up key=' + key)
-        return json.loads(memcache.get(key))
+        return json.loads(self.handle.get(key))
 
 
 def cached_result(func, args, kwargs):
@@ -45,14 +49,14 @@ def cached_result(func, args, kwargs):
     'metro+area', 'caught+up']
     get_similar_tracks:metro+area:caught+up
 
-    The value written to Memcache is a serialized JSON object.
+    The value written to Redis is a serialized JSON object.
 
     :param func: A string representing a function name from the LastFM class
     :param args: A list of args to pass to func
     :param kwargs: A dict of kwargs to pass to func
     :return: response from the corresponding func method"""
 
-    cache = MemCache()
+    cache = RedisCache(handle=_redis)
     key = func + ':' + ':'.join(args)
 
     try:
@@ -61,11 +65,12 @@ def cached_result(func, args, kwargs):
         results = None
 
     if not results:
-        logging.debug(key + ' not found in cache. Calling last.fm')
+        logging.warn(key + ' not found in cache. Calling last.fm')
         try:
+            lastfm = LastFM(api_key=cfg['API_KEY'])
             results = getattr(lastfm, func)(*args, **kwargs)
-        except LookupError:
-            logging.warn('unable to call {0}'.format(func))
+        except LookupError as e:
+            logging.warn('unable to call {0}, error={1}'.format(func, e))
             return results
         cache.add(key, results)
     return results

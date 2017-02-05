@@ -45,7 +45,7 @@ def artist_top_tracks(req):
     top_tracks = cached_result('get_artist_top_tracks', [artist], {})
     speech = 'Unable to locate top tracks for {artist}'.format(artist=artist)
 
-    if top_tracks is not None or len(sim_artists) > 0:
+    if top_tracks is not None:
         speech = 'The most popular songs for {artist} are'.format(artist=artist)
         for track in top_tracks:
             speech += '. ' + track
@@ -66,7 +66,7 @@ def artist_similar(req):
     sim_artists = cached_result('get_similar_artists', [artist], {})
     speech = 'Unable to locate similar artists for {artist}'.format(artist=artist)
 
-    if len(sim_artists) > 0 or sim_artists is not None:
+    if sim_artists and len(sim_artists) > 0:
         speech = 'The following artists are similar to {artist}'.format(
             artist=artist)
         for art in sim_artists:
@@ -90,7 +90,7 @@ def track_similar(req):
     speech = 'Unable to locate similar tracks for song {track} by {artist}'.format(
         track=track, artist=artist)
 
-    if len(sim_tracks) > 0 or sim_tracks is not None:
+    if sim_tracks and len(sim_tracks) > 0:
         speech = 'The following songs are similar to {track} by {artist}'.format(
             track=track, artist=artist)
         for track in sim_tracks:
@@ -108,7 +108,6 @@ def apiai_hook():
     """A single entry point into the web hook. Request is then dispersed
     to the appropriate method based on the 'action' passed from API.ai.
     API.ai allows only a single fullfillment endpoint per agent."""
-
 
     route = {
         'artist_bio': artist_bio,
@@ -132,5 +131,6 @@ def apiai_hook():
 def server_error(e):
     logging.exception('An error occurred during a request.')
     return 'An internal error occurred.', 500
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
