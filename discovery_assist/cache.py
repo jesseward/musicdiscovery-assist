@@ -67,7 +67,7 @@ def cached_result(func, args, kwargs):
     if not results:
         logging.warn(key + ' not found in cache. Calling last.fm')
         try:
-            lastfm = LastFM(api_key=cfg['API_KEY'])
+            lastfm = LastFM(cfg['API_KEY'])
             results = getattr(lastfm, func)(*args, **kwargs)
         except LookupError as e:
             logging.warn('unable to call {0}, error={1}'.format(func, e))
