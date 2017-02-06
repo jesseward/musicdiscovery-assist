@@ -17,16 +17,8 @@ class LastFM(object):
     For documentation of last.fm API see -> http://www.last.fm/api .
     API account creation actioned at http://www.last.fm/api/account/create"""
 
-    def __init__(self, api_key=None):
+    def __init__(self, api_key):
         self.api_key = api_key
-
-    @staticmethod
-    def get_deep_dict(pth, mtx):
-        for level in pth:
-            mtx = mtx.get(level, None)
-            if mtx is None:
-                break
-        return mtx
 
     def _clean_string(self, raw):
         return re.sub(clean_re, '', raw)
@@ -70,7 +62,7 @@ class LastFM(object):
 
         :param artist: Artist name (string) in which we wish to retrieve artist information.
         :param method: The LastFM webservice method we're calling ('artist.getinfo')
-        :return: A dictionary."""
+        :return: String."""
 
         resp = self._fetch(params={'method': method, 'artist': artist})
         summary = resp['artist']['bio']['content']

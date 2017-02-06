@@ -90,8 +90,3 @@ ENV/
 
 # configuration file that may or may not contain secrets
 config.py
-
-# ignore domain sock directory
-sock/
-
-bin/
