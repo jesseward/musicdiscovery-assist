@@ -1,0 +1,106 @@
+{
+  "userSays": [
+    {
+      "id": "6e742243-e2fe-4c57-ab74-8a0376225d78",
+      "data": [
+        {
+          "text": "instructions please"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0
+    },
+    {
+      "id": "2117190d-2bbd-4637-914c-f58f98f882b8",
+      "data": [
+        {
+          "text": "what can you do"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0
+    },
+    {
+      "id": "48679cca-f672-48c5-8202-ac4bd677465b",
+      "data": [
+        {
+          "text": "how do i use this"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0
+    },
+    {
+      "id": "9d3719e7-6337-40fd-9b2c-da132140d243",
+      "data": [
+        {
+          "text": "what can i do"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0
+    },
+    {
+      "id": "b382bcb7-71a7-48f5-bd21-541889baf2d3",
+      "data": [
+        {
+          "text": "assistance please"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0
+    },
+    {
+      "id": "e6e0db05-93f3-42c0-b960-d2187feab7c8",
+      "data": [
+        {
+          "text": "how do i"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0
+    },
+    {
+      "id": "3189bf00-c115-4268-8319-e30099b47d6b",
+      "data": [
+        {
+          "text": "i need help"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0
+    },
+    {
+      "id": "7cb2bf88-6100-4e0f-8edc-263e28d1ead3",
+      "data": [
+        {
+          "text": "help"
+        }
+      ],
+      "isTemplate": false,
+      "count": 0
+    }
+  ],
+  "id": "9d305c06-01fb-43e3-86fd-e12c4f9c4209",
+  "name": "help",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "speech": "Song explorer provides artist biographies or similar song and artist recommendations based on your actions. For example. For an artist biography try \"Ask song explorer about artist Daft Punk.\". To find a similar song \"Ask song explorer what songs are similar to Music Sounds Better With You by Stardust\".  To locate like artists try \"Ask song explorer what artists are similar to Thomas Bangalter\". Or if you\u0027re looking for the top tracks by an artist, try \"Ask song explorer what are the best songs by Pepe Bradock\""
+        }
+      ]
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": []
+}

@@ -1,10 +1,30 @@
 {
   "userSays": [
     {
+      "id": "97c95807-9f48-42ca-9418-4561a909bca0",
+      "data": [
+        {
+          "text": "What are the best songs by artist @sys.any:artist"
+        }
+      ],
+      "isTemplate": true,
+      "count": 0
+    },
+    {
+      "id": "ae9d1247-c78b-47c7-a425-0ee79c77ac88",
+      "data": [
+        {
+          "text": "What are the hits for @sys.any:artist"
+        }
+      ],
+      "isTemplate": true,
+      "count": 0
+    },
+    {
       "id": "ff3595a4-3eba-4645-893a-91d62e972a12",
       "data": [
         {
-          "text": "What are popular songs for @sys.any:artist"
+          "text": "What are the popular songs by @sys.any:artist"
         }
       ],
       "isTemplate": true,
@@ -14,7 +34,7 @@
       "id": "7fabbbd6-dec1-4c8f-9f2f-e8f05433eb87",
       "data": [
         {
-          "text": "What are the best songs for @sys.any:artist"
+          "text": "What are the best songs by @sys.any:artist"
         }
       ],
       "isTemplate": true,
@@ -24,7 +44,7 @@
       "id": "73bc3d88-2370-456f-a1d1-67332b0ed5f2",
       "data": [
         {
-          "text": "What are the top songs for artist @sys.any:artist"
+          "text": "What are the top songs by artist @sys.any:artist"
         }
       ],
       "isTemplate": true,

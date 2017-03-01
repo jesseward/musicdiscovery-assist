@@ -1,7 +1,9 @@
 {
+  "description": "Fetch artist and song recommendations from Last.FM . Project source code at https://github.com/jesseward/musicdiscovery-assist",
   "language": "en",
   "enabledDomainFeatures": [],
   "defaultTimezone": "UTC",
+  "isPrivate": true,
   "customClassifierMode": "use.after",
   "mlMinConfidence": 0.2
 }

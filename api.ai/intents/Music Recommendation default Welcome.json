@@ -13,7 +13,7 @@
       "messages": [
         {
           "type": 0,
-          "speech": "Hi, I provide music recommendations. Ask me to search for similar bands or songs, artists biographies or find the top songs from bands. What would you like to do?"
+          "speech": "Hi, welcome to song explorer. I provide music recommendations. Ask me to search for similar bands or songs, artists biographies or find the top songs from bands. What would you like to do?"
         }
       ]
     }

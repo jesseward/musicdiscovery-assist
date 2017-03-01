@@ -1,6 +1,26 @@
 {
   "userSays": [
     {
+      "id": "0d76a4bb-12ff-4967-a129-5fc4b98f872a",
+      "data": [
+        {
+          "text": "about artist @sys.any:artist"
+        }
+      ],
+      "isTemplate": true,
+      "count": 0
+    },
+    {
+      "id": "8594fe34-073f-42ee-9d89-94300a283425",
+      "data": [
+        {
+          "text": "about @sys.any:artist"
+        }
+      ],
+      "isTemplate": true,
+      "count": 0
+    },
+    {
       "id": "ce76205c-6e64-4b6b-90f7-913d160a915a",
       "data": [
         {
