@@ -41,6 +41,8 @@ class RedisCache(object):
 
         try:
             key = json.loads(self.handle.get(key))
+	except TypeError as e:
+	    raise LookupError('key not found')
         except Exception as e:
             raise LookupError(e)
 
@@ -70,7 +72,7 @@ def cached_result(func, args, kwargs):
         logger.debug(u'Looking up key=' + key)
         results = cache.get(key)
     except LookupError as e:
-        logger.error('Failed to retrieve key from cache. key="{0}", error="{1}"'.format(key, e))
+        logger.warn('Failed to retrieve key from cache. key="{0}", error="{1}"'.format(key, e))
         results = None
 
     if not results:

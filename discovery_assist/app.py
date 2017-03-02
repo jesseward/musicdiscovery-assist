@@ -12,6 +12,14 @@ app = Flask(__name__)
 API_MOUNTPOINT = '/api'
 API_VERSION = 'v1'
 
+handler = TimedRotatingFileHandler(cfg['LOG_LOCATION'], when='midnight', interval=1)
+handler.setLevel(logging.DEBUG)
+formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
+handler.setFormatter(formatter)
+logger = logging.getLogger('music-discovery')
+logger.setLevel(logging.DEBUG)
+logger.addHandler(handler)
+
 
 def api_url(url):
     url = url[1:] if url.startswith('/') else url
@@ -140,11 +148,4 @@ def server_error(e):
     return 'An internal error occurred.', 500
 
 if __name__ == '__main__':
-    handler = TimedRotatingFileHandler(cfg['LOG_LOCATION'], when='midnight', interval=1)
-    handler.setLevel(logging.DEBUG)
-    formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
-    handler.setFormatter(formatter)
-    logger = logging.getLogger('music-discovery')
-    logger.setLevel(logging.DEBUG)
-    logger.addHandler(handler)
     app.run(debug=False)
