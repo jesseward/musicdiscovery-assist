@@ -1,7 +1,10 @@
 import logging
 import urllib
 
+from logging.handlers import TimedRotatingFileHandler
+
 from cache import cached_result
+from config import cfg
 from flask import Flask, jsonify, abort, request
 
 app = Flask(__name__)
@@ -23,6 +26,7 @@ def artist_bio(req):
     Expects JSON paramater 'artist'"""
 
     artist = req.get('result').get('parameters').get('artist')
+    logger.info('received {0} request for artist="{1}"'.format('artist_bio', artist))
     bio = cached_result('get_artist_info', [artist], {})
     speech = 'Unable to locate biography for {artist}'.format(artist=artist)
 
@@ -42,6 +46,7 @@ def artist_top_tracks(req):
     Expects JSON paramater 'artist'"""
 
     artist = req.get('result').get('parameters').get('artist')
+    logger.info('received {0} request for artist="{1}"'.format('artist_top_tracks', artist))
     top_tracks = cached_result('get_artist_top_tracks', [artist], {})
     speech = 'Unable to locate top tracks for {artist}'.format(artist=artist)
 
@@ -63,6 +68,7 @@ def artist_similar(req):
     Expects JSON paramater 'artist'"""
 
     artist = req.get('result').get('parameters').get('artist')
+    logger.info('received {0} request for artist="{1}"'.format('artist_similar', artist))
     sim_artists = cached_result('get_similar_artists', [artist], {})
     speech = 'Unable to locate similar artists for {artist}'.format(artist=artist)
 
@@ -86,6 +92,7 @@ def track_similar(req):
 
     artist = req.get('result').get('parameters').get('artist')
     track = req.get('result').get('parameters').get('track')
+    logger.info('received {0} request for artist="{1}", track="{2}"'.format('track_similar', artist, track))
     sim_tracks = cached_result('get_similar_tracks', [artist, track], {})
     speech = 'Unable to locate similar tracks for song {track} by {artist}'.format(
         track=track, artist=artist)
@@ -133,4 +140,11 @@ def server_error(e):
     return 'An internal error occurred.', 500
 
 if __name__ == '__main__':
+    handler = TimedRotatingFileHandler(cfg['LOG_LOCATION'], when='midnight', interval=1)
+    handler.setLevel(logging.DEBUG)
+    formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
+    handler.setFormatter(formatter)
+    logger = logging.getLogger('music-discovery')
+    logger.setLevel(logging.DEBUG)
+    logger.addHandler(handler)
     app.run(debug=False)

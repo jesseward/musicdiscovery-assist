@@ -9,6 +9,8 @@ from liblastfm import LastFM
 
 _redis = Redis(host=cfg['REDIS_HOST'], port=cfg['REDIS_PORT'])
 
+logger = logging.getLogger('music-discovery')
+
 
 class RedisCache(object):
     """Wrapper around Redis to be used to cache results
@@ -27,17 +29,22 @@ class RedisCache(object):
         :param key: String representing an object key
         :param value: A Python type that supports JSON serialization."""
 
-        logging.debug(u'Writing key=' + key)
-        if not self.handle.setex(key, json.dumps(value), timeout):
-            logging.error(u'Unable to write ' + key)
+        try:
+            self.handle.setex(key, json.dumps(value), timeout)
+        except Exception as e:
+            raise KeyError(e)
 
     def get(self, key):
         """Retrieves a JSON serialized object from Redis. Also
         de-serializes to the Python object. Our use case will be a str, list
         or dict."""
 
-        logging.debug(u'Looking up key=' + key)
-        return json.loads(self.handle.get(key))
+        try:
+            key = json.loads(self.handle.get(key))
+        except Exception as e:
+            raise LookupError(e)
+
+        return key
 
 
 def cached_result(func, args, kwargs):
@@ -60,17 +67,25 @@ def cached_result(func, args, kwargs):
     key = func + ':' + ':'.join(args)
 
     try:
+        logger.debug(u'Looking up key=' + key)
         results = cache.get(key)
-    except TypeError:
+    except LookupError as e:
+        logger.error('Failed to retrieve key from cache. key="{0}", error="{1}"'.format(key, e))
         results = None
 
     if not results:
-        logging.warn(key + ' not found in cache. Calling last.fm')
+        logger.debug(key + ' not found in cache. Calling last.fm')
         try:
             lastfm = LastFM(cfg['API_KEY'])
             results = getattr(lastfm, func)(*args, **kwargs)
         except LookupError as e:
-            logging.warn('unable to call {0}, error={1}'.format(func, e))
+            logger.warn('unable to call {0}, error={1}'.format(func, e))
             return results
-        cache.add(key, results)
+
+        try:
+            logger.debug(u'Writing key=' + key)
+            cache.add(key, results)
+        except KeyError as e:
+            logger.error('Unable to write key to cache. key="{0}" to cache, error="{1}"'.format(key, e))
+
     return results
