@@ -1,7 +1,7 @@
 import logging
 import urllib
 
-from logging.handlers import TimedRotatingFileHandler
+from logging.handlers import SysLogHandler
 
 from cache import cached_result
 from config import cfg
@@ -12,9 +12,9 @@ app = Flask(__name__)
 API_MOUNTPOINT = '/api'
 API_VERSION = 'v1'
 
-handler = TimedRotatingFileHandler(cfg['LOG_LOCATION'], when='midnight', interval=1)
+handler = SysLogHandler(address='/dev/log', facility=SysLogHandler.LOG_USER)
 handler.setLevel(logging.DEBUG)
-formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
+formatter = logging.Formatter("music-discovery - %(levelname)s - %(message)s")
 handler.setFormatter(formatter)
 logger = logging.getLogger('music-discovery')
 logger.setLevel(logging.DEBUG)
@@ -38,7 +38,7 @@ def artist_bio(req):
     bio = cached_result('get_artist_info', [artist], {})
     speech = 'Unable to locate biography for {artist}'.format(artist=artist)
 
-    if bio is not None:
+    if len(bio) > 0:
         speech = bio
 
     return jsonify(
@@ -136,7 +136,7 @@ def apiai_hook():
     try:
         response = route[req.get('result').get('action')](req)
     except (KeyError, AttributeError) as e:
-        logging.error('Invalid action specified, error="{0}".'.format(e))
+        logger.error('Invalid action specified, error="{0}".'.format(e))
         return jsonify(response)
 
     return response
@@ -144,7 +144,7 @@ def apiai_hook():
 
 @app.errorhandler(500)
 def server_error(e):
-    logging.exception('An error occurred during a request.')
+    logger.exception('An error occurred during a request.')
     return 'An internal error occurred.', 500
 
 if __name__ == '__main__':

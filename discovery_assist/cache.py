@@ -81,11 +81,15 @@ def cached_result(func, args, kwargs):
             lastfm = LastFM(cfg['API_KEY'])
             results = getattr(lastfm, func)(*args, **kwargs)
         except LookupError as e:
-            logger.warn('unable to call {0}, error={1}'.format(func, e))
+            logger.warn('unable to call {0}, error="{1}"'.format(func, e))
+            return results
+
+        if not results:
+            logger.warn('No results returned from last.fm for key="{0}".'.format(key))
             return results
 
         try:
-            logger.debug(u'Writing key=' + key)
+            logger.debug(u'Writing key="{0}"'.format(key))
             cache.add(key, results)
         except KeyError as e:
             logger.error('Unable to write key to cache. key="{0}" to cache, error="{1}"'.format(key, e))
