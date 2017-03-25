@@ -66,22 +66,22 @@ def cached_result(func, args, kwargs):
     :return: response from the corresponding func method"""
 
     cache = RedisCache(handle=_redis)
-    key = func + ':' + ':'.join(args)
+    key = func + ':' + ':'.join(args).lower()
 
     try:
-        logger.debug(u'Looking up key=' + key)
+        logger.debug('Looking up key="{0}"'.format(key))
         results = cache.get(key)
     except LookupError as e:
         logger.warn('Failed to retrieve key from cache. key="{0}", error="{1}"'.format(key, e))
         results = None
 
     if not results:
-        logger.debug(key + ' not found in cache. Calling last.fm')
+        logger.debug('key="{0}" not found in cache. Calling last.fm'.format(key))
         try:
             lastfm = LastFM(cfg['API_KEY'])
             results = getattr(lastfm, func)(*args, **kwargs)
         except LookupError as e:
-            logger.warn('unable to call {0}, error="{1}"'.format(func, e))
+            logger.warn('unable to call func="{0}", error="{1}"'.format(func, e))
             return results
 
         if not results:
@@ -89,7 +89,7 @@ def cached_result(func, args, kwargs):
             return results
 
         try:
-            logger.debug(u'Writing key="{0}"'.format(key))
+            logger.debug('Writing key="{0}"'.format(key))
             cache.add(key, results)
         except KeyError as e:
             logger.error('Unable to write key to cache. key="{0}" to cache, error="{1}"'.format(key, e))

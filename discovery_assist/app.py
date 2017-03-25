@@ -38,7 +38,7 @@ def artist_bio(req):
     bio = cached_result('get_artist_info', [artist], {})
     speech = 'Unable to locate biography for {artist}'.format(artist=artist)
 
-    if len(bio) > 0:
+    if bio and len(bio) > 0:
         speech = bio
 
     return jsonify(
