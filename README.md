@@ -1,3 +1,7 @@
+# Current status
+
+This application is no longer active development. This service was refactored and published to Google Action applications using  https://github.com/jesseward/songexplorer . The 'musicdiscovery-assist' code will continue to exist here as-is.
+
 # musicdiscovery-assist
 
 Google Home assistant for music recommendations, built with Python , Redis &amp; Flask. Using Google Home and API.ai
